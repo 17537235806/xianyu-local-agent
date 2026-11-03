@@ -1,0 +1,40 @@
+# 模型文件：体积大（Q4_K_M 约 1.1 GB），不进仓库
+models/
+*.gguf
+*.ggml
+*.bin
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# 本地运行产物
+server.log
+*.log
+*.pid
+*.sqlite
+*.sqlite3
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Node（本仓库无构建步骤，仅防御性忽略）
+node_modules/
+
+# 环境变量与本地配置
+.env
+.env.local
+
+# 打包产物
+dist/
+*.apk
+*.aab

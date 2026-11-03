@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff8f0">
+<title>小咸鱼 · 本地版</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="小咸鱼">
+<meta name="application-name" content="小咸鱼">
+<meta name="description" content="跑在手机本地的聊天 AI，不联网、数据不出机器">
+
+</head>
+<body>
+<header>
+  <img src="/avatar.png" alt="">
+  <div>
+    <div class="title">小咸鱼 · 本地版</div>
+    <div class="sub"><span class="dot" id="dot"></span><span id="stat">连接中…</span></div>
+  </div>
+  <span class="grow"></span>
+  <button class="icon" id="btnNew" title="新对话">＋</button>
+  <button class="icon" id="btnGomoku" title="五子棋">棋</button>
+  <button class="icon" id="btn2048" title="2048">数</button>
+  <button class="icon" id="btnCfg" title="设置">⚙</button>
+</header>
+
+<main id="list"></main>
+
+<footer>
+  <div class="composer">
+    <textarea id="input" rows="1" placeholder="说点什么…（Enter 发送，Shift+Enter 换行）"></textarea>
+    <button class="send" id="btnSend">↑</button>
+  </div>
+  <div class="hint">全部在本机运行 · 断网可用 · 记录只存在这个浏览器里</div>
+</footer>
+
+<div class="mask" id="mask"></div>
+<div class="sheet" id="sheet">
+  <h3>设置</h3>
+  <div class="row">
+    <label>人设</label>
+    <div class="persona-row">
+      <button type="button" data-persona="baifantuan">小咸鱼</button>
+    </div>
+  </div>
+  <div class="row">
+    <label>系统提示词（人设）</label>
+    <textarea id="cfgSys"></textarea>
+  </div>
+  <div class="row">
+    <label>温度 <span id="tv">0.6</span>（低=稳，高=活）</label>
+    <input type="range" id="cfgTemp" min="0.1" max="1.2" step="0.05" value="0.6">
+  </div>
+  <div class="row">
+    <label>单次最多输出 token</label>
+    <input type="number" id="cfgMax" min="64" max="4096" step="64" value="768">
+  </div>
+  <div class="row">
+    <label>本地缓存 <span id="useKB">计算中…</span></label>
+    <div class="btnrow">
+      <button id="clrChat">清空对话</button>
+      <button class="danger" id="clrAll">清空全部数据</button>
+    </div>
+    <div class="usage">清空后无法恢复；只影响这台手机的浏览器，不影响引擎。</div>
+  </div>
+  <div class="btnrow">
+    <button id="cfgReset">恢复默认人设</button>
+    <button class="primary" id="cfgSave">保存</button>
+  </div>
+</div>
+
+<div id="gm" class="off">
+  <div class="g2-top">
+    <b>五子棋</b>
+    <span class="sc" id="gmWho">你执黑 · 先手</span>
+    <button id="gmClose">关闭</button>
+  </div>
+  <div id="gmBubble"><div class="ai-line">说「帮我」让本鱼看看棋。</div></div>
+  <canvas id="gmBoard" width="600" height="600"></canvas>
+  <div class="g2-bar">
+    <input id="gmIn" placeholder="跟小咸鱼说说这盘…">
+    <button id="gmSend">↑</button>
+  </div>
+</div>
+
+<div id="g2" class="off">
+  <div class="g2-top">
+    <b>2048</b>
+    <span class="sc">分数 <em id="g2Score">0</em> · 最高 <em id="g2Best">0</em></span>
+    <button id="g2Close">关闭</button>
+  </div>
+  <div id="g2Bubble"><div class="ai-line">说「帮我」让本鱼看看这盘。</div></div>
+  <div id="g2Wrap">
+    <div id="g2Grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div id="g2Tiles"></div>
+  </div>
+  <div class="g2-acts">
+    <button id="g2Undo">悔棋 3</button>
+    <button id="g2Rank">排行榜</button>
+  </div>
+  <div id="g2RankList" class="off"></div>
+  <div class="g2-bar">
+    <input id="g2In" placeholder="跟小咸鱼说说这盘…">
+    <button id="g2Send">↑</button>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

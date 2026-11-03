@@ -1,0 +1,3 @@
+# 小咸鱼 · 本地推理服务依赖
+# Web 层只用 Python 标准库（http.server），下面只有推理引擎
+llama-cpp-python>=0.2.90
